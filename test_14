@@ -1,0 +1,47 @@
+#!/usr/bin/python3
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+import pytest
+
+def test_reg1():
+    link = "http://suninjuly.github.io/registration1.html"
+    browser = webdriver.Chrome()
+    browser.get(link)
+
+    input1 = browser.find_element(By.CLASS_NAME, "form-control.first")
+    input1.send_keys("Ivan")
+    input2 = browser.find_element(By.XPATH, "//*[@class='form-control second']")
+    input2.send_keys("Petrov")
+    input3 = browser.find_element(By.XPATH, "//div[3]/input")
+    input3.send_keys("csdvsv@sca.com")
+    button = browser.find_element(By.CSS_SELECTOR, "button.btn")
+    button.click()
+    time.sleep(1)
+    welcome_text_elt = browser.find_element(By.TAG_NAME, "h1")
+    welcome_text = welcome_text_elt.text
+    assert welcome_text == "Congratulations! You have successfully registered!", "Not successful"
+    browser.quit()               
+def test_reg2():
+    link = "http://suninjuly.github.io/registration2.html"
+    browser = webdriver.Chrome()
+    browser.get(link)
+    input1 = browser.find_element(By.CLASS_NAME, "form-control.first")
+    input1.send_keys("Ivan")
+    input2 = browser.find_element(By.XPATH, "//*[@class='form-control second']")
+    input2.send_keys("Petrov")
+    input3 = browser.find_element(By.XPATH, "//div[3]/input")
+    input3.send_keys("csdvsv@sca.com")
+    button = browser.find_element(By.CSS_SELECTOR, "button.btn")
+    button.click()
+    time.sleep(1)
+    welcome_text_elt = browser.find_element(By.TAG_NAME, "h1")
+    welcome_text = welcome_text_elt.text
+    assert welcome_text == "Congratulations! You have successfully registered!", "Not successful"
+    browser.quit()
+    
+    
+
+        
+if __name__ == "__main__":
+    pytest.main()
